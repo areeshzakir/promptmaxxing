@@ -4,32 +4,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🧏‍♂️ Promptmaxxing — Jailbreak My Infographic 🔓</title>
+    <title>Promptmaxxing — Jailbreak My Infographic</title>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Anton&family=Epilogue:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
         rel="stylesheet">
     <style>
         :root {
-            --bg: #0a0a0f;
-            --surface: #13131a;
-            --surface-2: #1a1a24;
-            --surface-3: #22222e;
-            --border: rgba(255, 255, 255, 0.06);
-            --border-hover: rgba(255, 255, 255, 0.12);
-            --text: #e8e8ed;
-            --text-muted: #8888a0;
-            --text-dim: #55556a;
-            --accent: #f5c542;
-            --accent-glow: rgba(245, 197, 66, 0.15);
-            --green: #4ade80;
-            --blue: #60a5fa;
-            --purple: #a78bfa;
-            --red: #f87171;
-            --orange: #fb923c;
-            --radius: 16px;
-            --radius-sm: 10px;
-            --font: 'Inter', -apple-system, sans-serif;
-            --mono: 'JetBrains Mono', monospace;
+            --bg: #FFFBEB;
+            --surface: #FFFFFF;
+            --surface-2: #FFF7D6;
+            --border: #000000;
+            --border-w: 2.5px;
+            --shadow: 5px 5px 0px #000000;
+            --shadow-hover: 8px 8px 0px #000000;
+            --shadow-sm: 3px 3px 0px #000000;
+            --text: #1a1a1a;
+            --text-muted: #555555;
+            --accent-yellow: #FFEB3B;
+            --accent-rose: #FF5252;
+            --accent-blue: #2196F3;
+            --accent-green: #4CAF50;
+            --accent-orange: #FF9800;
+            --accent-purple: #9C27B0;
+            --accent-teal: #00BCD4;
+            --radius: 12px;
+            --font-display: 'Anton', sans-serif;
+            --font-body: 'Epilogue', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
         }
 
         * {
@@ -39,22 +40,138 @@
         }
 
         body {
-            font-family: var(--font);
+            font-family: var(--font-body);
             background: var(--bg);
             color: var(--text);
             min-height: 100vh;
             -webkit-font-smoothing: antialiased;
         }
 
-        /* === HEADER === */
+        /* === SVG ICON HELPER === */
+        .icon {
+            width: 18px;
+            height: 18px;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+            flex-shrink: 0;
+        }
+
+        .icon-sm {
+            width: 14px;
+            height: 14px;
+        }
+
+        .icon-lg {
+            width: 22px;
+            height: 22px;
+        }
+
+        /* === HERO === */
+        .hero {
+            position: relative;
+            padding: 4rem 2rem 3rem;
+            text-align: center;
+            background: var(--accent-yellow);
+            border-bottom: var(--border-w) solid var(--border);
+            overflow: hidden;
+        }
+
+        /* Decorative shapes */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 40px;
+            width: 80px;
+            height: 80px;
+            background: var(--accent-rose);
+            border: var(--border-w) solid var(--border);
+            border-radius: 50%;
+            transform: rotate(15deg);
+            z-index: 0;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 20px;
+            right: 60px;
+            width: 60px;
+            height: 60px;
+            background: var(--accent-blue);
+            border: var(--border-w) solid var(--border);
+            transform: rotate(45deg);
+            z-index: 0;
+        }
+
+        .hero-deco-1 {
+            position: absolute;
+            top: 60px;
+            right: 120px;
+            width: 40px;
+            height: 40px;
+            background: var(--accent-green);
+            border: var(--border-w) solid var(--border);
+            border-radius: 50%;
+        }
+
+        .hero-deco-2 {
+            position: absolute;
+            bottom: 40px;
+            left: 150px;
+            width: 50px;
+            height: 50px;
+            background: var(--accent-orange);
+            border: var(--border-w) solid var(--border);
+            transform: rotate(20deg);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: 4rem;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            line-height: 1;
+            margin-bottom: 0.6rem;
+            color: var(--text);
+        }
+
+        .hero-tagline {
+            font-family: var(--font-body);
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.4rem;
+        }
+
+        .hero-sub {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            background: #fff;
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border: var(--border-w) solid var(--border);
+            border-radius: 50px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* === STICKY NAV === */
         .header {
             position: sticky;
             top: 0;
             z-index: 100;
-            background: rgba(10, 10, 15, 0.85);
-            backdrop-filter: blur(20px) saturate(180%);
-            border-bottom: 1px solid var(--border);
-            padding: 1rem 2rem;
+            background: #fff;
+            border-bottom: var(--border-w) solid var(--border);
+            padding: 0.7rem 2rem;
         }
 
         .header-inner {
@@ -62,113 +179,135 @@
             margin: 0 auto;
             display: flex;
             align-items: center;
-            gap: 1.5rem;
+            gap: 1rem;
             flex-wrap: wrap;
         }
 
         .logo {
-            font-size: 1.4rem;
-            font-weight: 800;
-            letter-spacing: -0.03em;
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            flex-shrink: 0;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            flex-shrink: 0;
+            gap: 0.4rem;
         }
 
-        .logo span {
-            color: var(--accent);
+        .logo-badge {
+            background: var(--accent-yellow);
+            border: var(--border-w) solid var(--border);
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            font-weight: 700;
+            box-shadow: 2px 2px 0px #000;
         }
 
         /* Search */
         .search-box {
             flex: 1;
-            max-width: 400px;
+            max-width: 380px;
             position: relative;
         }
 
         .search-box input {
             width: 100%;
-            padding: 0.6rem 1rem 0.6rem 2.4rem;
-            background: var(--surface-2);
-            border: 1px solid var(--border);
+            padding: 0.55rem 1rem 0.55rem 2.6rem;
+            background: #fff;
+            border: var(--border-w) solid var(--border);
             border-radius: 50px;
             color: var(--text);
-            font-family: var(--font);
-            font-size: 0.85rem;
+            font-family: var(--font-body);
+            font-size: 0.82rem;
+            font-weight: 500;
             outline: none;
-            transition: all 0.2s;
+            box-shadow: var(--shadow-sm);
+            transition: box-shadow 0.2s, transform 0.2s;
         }
 
         .search-box input:focus {
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px var(--accent-glow);
+            box-shadow: var(--shadow-hover);
+            transform: translate(-1px, -1px);
         }
 
-        .search-box::before {
-            content: '🔍';
+        .search-icon {
             position: absolute;
-            left: 0.8rem;
+            left: 0.9rem;
             top: 50%;
             transform: translateY(-50%);
-            font-size: 0.8rem;
+            color: var(--text-muted);
         }
 
         /* Filters */
         .filters {
             display: flex;
-            gap: 0.5rem;
+            gap: 0.4rem;
             align-items: center;
             flex-wrap: wrap;
         }
 
         .filter-btn {
-            padding: 0.4rem 0.9rem;
+            padding: 0.4rem 0.85rem;
             border-radius: 50px;
-            border: 1px solid var(--border);
-            background: transparent;
-            color: var(--text-muted);
-            font-family: var(--font);
-            font-size: 0.75rem;
-            font-weight: 500;
+            border: var(--border-w) solid var(--border);
+            background: #fff;
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: 0.72rem;
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all 0.15s;
             white-space: nowrap;
+            box-shadow: 2px 2px 0px #000;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
         }
 
         .filter-btn:hover {
-            border-color: var(--border-hover);
-            color: var(--text);
-            background: var(--surface-2);
+            transform: translate(-1px, -1px);
+            box-shadow: 3px 3px 0px #000;
+        }
+
+        .filter-btn:active {
+            transform: translate(1px, 1px);
+            box-shadow: 1px 1px 0px #000;
         }
 
         .filter-btn.active {
-            background: var(--accent);
+            background: var(--accent-yellow);
             color: #000;
-            border-color: var(--accent);
-            font-weight: 600;
+        }
+
+        .filter-btn.fav-active {
+            background: var(--accent-rose);
+            color: #fff;
         }
 
         .sort-select {
-            padding: 0.4rem 0.8rem;
+            padding: 0.4rem 0.7rem;
             border-radius: 50px;
-            border: 1px solid var(--border);
-            background: var(--surface-2);
-            color: var(--text-muted);
-            font-family: var(--font);
-            font-size: 0.75rem;
+            border: var(--border-w) solid var(--border);
+            background: #fff;
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: 0.72rem;
+            font-weight: 600;
             cursor: pointer;
             outline: none;
+            box-shadow: 2px 2px 0px #000;
         }
 
         .count-badge {
             padding: 0.3rem 0.7rem;
             border-radius: 50px;
-            background: var(--surface-3);
-            color: var(--text-dim);
-            font-size: 0.7rem;
-            font-weight: 600;
-            font-family: var(--mono);
+            background: var(--text);
+            color: #fff;
+            font-size: 0.68rem;
+            font-weight: 700;
+            font-family: var(--font-mono);
         }
 
         /* === GRID === */
@@ -180,122 +319,168 @@
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
             gap: 1.5rem;
         }
 
         /* === CARD === */
         .card {
             background: var(--surface);
-            border: 1px solid var(--border);
+            border: var(--border-w) solid var(--border);
             border-radius: var(--radius);
             overflow: hidden;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow);
+            transition: all 0.15s;
             cursor: pointer;
             position: relative;
+            /* stagger */
+            opacity: 0;
+            transform: translateY(20px);
+            animation: cardEnter 0.4s ease forwards;
+        }
+
+        @keyframes cardEnter {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .card:hover {
-            border-color: var(--border-hover);
-            transform: translateY(-4px);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            transform: translate(-3px, -3px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .card:active {
+            transform: translate(1px, 1px);
+            box-shadow: 2px 2px 0px #000;
         }
 
         .card-img-wrapper {
             position: relative;
             aspect-ratio: 1;
             overflow: hidden;
-            background: var(--surface-2);
+            background: #f0f0f0;
+            border-bottom: var(--border-w) solid var(--border);
         }
 
         .card-img-wrapper img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.3s ease;
         }
 
         .card:hover .card-img-wrapper img {
-            transform: scale(1.05);
+            transform: scale(1.04);
         }
 
         .card-number {
             position: absolute;
-            top: 0.75rem;
-            left: 0.75rem;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(10px);
-            color: var(--accent);
-            font-family: var(--mono);
+            top: 0.6rem;
+            left: 0.6rem;
+            background: var(--accent-yellow);
+            border: var(--border-w) solid var(--border);
+            color: #000;
+            font-family: var(--font-mono);
             font-size: 0.7rem;
             font-weight: 700;
-            padding: 0.25rem 0.6rem;
-            border-radius: 50px;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            box-shadow: 2px 2px 0px #000;
         }
 
-        .card-score-badge {
+        /* Radial gauge — neubrutalism style */
+        .card-score-gauge {
             position: absolute;
-            top: 0.75rem;
-            right: 0.75rem;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(10px);
-            color: #fff;
-            font-family: var(--mono);
-            font-size: 0.75rem;
-            font-weight: 700;
-            padding: 0.25rem 0.6rem;
-            border-radius: 50px;
+            top: 0.5rem;
+            right: 0.5rem;
+            width: 50px;
+            height: 50px;
+            filter: drop-shadow(2px 2px 0px #000);
+        }
+
+        .gauge-bg {
+            fill: #fff;
+            stroke: #000;
+            stroke-width: 2;
+        }
+
+        .gauge-fill {
+            fill: none;
+            stroke-width: 4;
+            stroke-linecap: butt;
+        }
+
+        .gauge-text {
+            font-family: var(--font-display);
+            font-size: 12px;
+            fill: #000;
+            text-anchor: middle;
+            dominant-baseline: central;
+        }
+
+        /* FAV BUTTON */
+        .fav-btn {
+            position: absolute;
+            bottom: 0.6rem;
+            right: 0.6rem;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            border: var(--border-w) solid var(--border);
+            background: #fff;
+            cursor: pointer;
+            font-size: 0;
             display: flex;
             align-items: center;
-            gap: 0.3rem;
+            justify-content: center;
+            transition: all 0.15s;
+            z-index: 5;
+            box-shadow: 2px 2px 0px #000;
+            color: var(--text-muted);
         }
 
-        .score-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            display: inline-block;
+        .fav-btn:hover {
+            transform: translate(-1px, -1px);
+            box-shadow: 3px 3px 0px #000;
+            color: var(--accent-rose);
         }
 
-        .score-high {
-            background: var(--green);
-        }
-
-        .score-mid {
-            background: var(--orange);
-        }
-
-        .score-low {
-            background: var(--red);
+        .fav-btn.active {
+            background: var(--accent-rose);
+            color: #fff;
         }
 
         .card-body {
-            padding: 1rem 1.2rem;
+            padding: 0.9rem 1.1rem;
         }
 
         .card-title {
-            font-size: 0.9rem;
-            font-weight: 600;
-            letter-spacing: -0.01em;
-            line-height: 1.4;
-            margin-bottom: 0.6rem;
+            font-family: var(--font-body);
+            font-size: 0.88rem;
+            font-weight: 700;
+            line-height: 1.35;
+            margin-bottom: 0.5rem;
             color: var(--text);
         }
 
         .card-scores {
             display: flex;
-            gap: 0.4rem;
+            gap: 0.35rem;
             flex-wrap: wrap;
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.7rem;
         }
 
         .score-chip {
-            font-size: 0.65rem;
-            font-family: var(--mono);
-            padding: 0.2rem 0.5rem;
-            border-radius: 4px;
-            background: var(--surface-3);
-            color: var(--text-muted);
+            font-size: 0.62rem;
+            font-family: var(--font-mono);
+            padding: 0.15rem 0.45rem;
+            border-radius: 3px;
+            border: 1.5px solid var(--border);
+            background: var(--surface-2);
+            color: var(--text);
+            font-weight: 500;
         }
 
         .card-actions {
@@ -305,32 +490,37 @@
 
         .btn {
             flex: 1;
-            padding: 0.55rem 0.8rem;
-            border-radius: var(--radius-sm);
-            border: 1px solid var(--border);
-            background: var(--surface-2);
-            color: var(--text-muted);
-            font-family: var(--font);
-            font-size: 0.75rem;
-            font-weight: 500;
+            padding: 0.5rem 0.7rem;
+            border-radius: 8px;
+            border: var(--border-w) solid var(--border);
+            background: #fff;
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: 0.72rem;
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all 0.15s;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0.4rem;
+            gap: 0.35rem;
+            box-shadow: 2px 2px 0px #000;
         }
 
         .btn:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-            background: var(--accent-glow);
+            transform: translate(-1px, -1px);
+            box-shadow: 3px 3px 0px #000;
+            background: var(--accent-yellow);
+        }
+
+        .btn:active {
+            transform: translate(1px, 1px);
+            box-shadow: 0px 0px 0px #000;
         }
 
         .btn.copied {
-            background: rgba(74, 222, 128, 0.15);
-            border-color: var(--green);
-            color: var(--green);
+            background: var(--accent-green);
+            color: #fff;
         }
 
         /* === MODAL === */
@@ -338,12 +528,11 @@
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(8px);
+            background: rgba(0, 0, 0, 0.6);
             z-index: 1000;
             padding: 2rem;
             overflow-y: auto;
-            animation: fadeIn 0.2s ease;
+            animation: fadeIn 0.15s ease;
         }
 
         .modal-overlay.active {
@@ -364,19 +553,20 @@
 
         .modal {
             background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 20px;
+            border: var(--border-w) solid var(--border);
+            border-radius: var(--radius);
             max-width: 800px;
             width: 100%;
-            margin-top: 3rem;
+            margin-top: 2rem;
             overflow: hidden;
-            animation: slideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 10px 10px 0px #000;
+            animation: slideUp 0.2s ease;
         }
 
         @keyframes slideUp {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(20px);
             }
 
             to {
@@ -387,33 +577,35 @@
 
         .modal-close {
             position: absolute;
-            top: 1rem;
-            right: 1rem;
+            top: 0.8rem;
+            right: 0.8rem;
             width: 36px;
             height: 36px;
             border-radius: 50%;
-            border: none;
-            background: rgba(0, 0, 0, 0.5);
+            border: var(--border-w) solid var(--border);
+            background: var(--accent-rose);
             color: #fff;
-            font-size: 1.2rem;
             cursor: pointer;
             z-index: 10;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: background 0.2s;
+            box-shadow: 2px 2px 0px #000;
+            transition: all 0.15s;
         }
 
         .modal-close:hover {
-            background: rgba(255, 0, 0, 0.4);
+            transform: translate(-1px, -1px);
+            box-shadow: 3px 3px 0px #000;
         }
 
         .modal-img-wrapper {
             position: relative;
             aspect-ratio: 1;
-            background: var(--surface-2);
+            background: #f0f0f0;
             max-height: 500px;
             overflow: hidden;
+            border-bottom: var(--border-w) solid var(--border);
         }
 
         .modal-img-wrapper img {
@@ -427,60 +619,65 @@
         }
 
         .modal-title {
-            font-size: 1.3rem;
-            font-weight: 700;
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            text-transform: uppercase;
             margin-bottom: 0.5rem;
-            letter-spacing: -0.02em;
         }
 
         .modal-meta {
             display: flex;
-            gap: 1rem;
+            gap: 0.6rem;
             margin-bottom: 1.5rem;
             flex-wrap: wrap;
         }
 
         .meta-item {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            font-family: var(--mono);
+            font-size: 0.75rem;
+            font-family: var(--font-mono);
+            background: var(--surface-2);
+            border: 1.5px solid var(--border);
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
         }
 
         .modal-scores-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-            gap: 0.8rem;
+            gap: 0.7rem;
             margin-bottom: 1.5rem;
         }
 
         .score-bar-item {
             background: var(--surface-2);
-            border-radius: var(--radius-sm);
-            padding: 0.6rem 0.8rem;
+            border: 1.5px solid var(--border);
+            border-radius: 6px;
+            padding: 0.5rem 0.7rem;
         }
 
         .score-bar-label {
-            font-size: 0.7rem;
-            color: var(--text-dim);
-            margin-bottom: 0.4rem;
+            font-size: 0.68rem;
+            color: var(--text-muted);
+            margin-bottom: 0.35rem;
+            font-weight: 600;
         }
 
         .score-bar {
-            height: 4px;
-            background: var(--surface-3);
-            border-radius: 2px;
+            height: 6px;
+            background: #eee;
+            border-radius: 0;
+            border: 1px solid var(--border);
             overflow: hidden;
             margin-bottom: 0.3rem;
         }
 
         .score-bar-fill {
             height: 100%;
-            border-radius: 2px;
-            transition: width 0.5s ease;
+            transition: width 0.4s ease;
         }
 
         .score-bar-value {
-            font-family: var(--mono);
+            font-family: var(--font-mono);
             font-size: 0.8rem;
             font-weight: 700;
         }
@@ -490,29 +687,30 @@
         }
 
         .prompt-label {
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: var(--text-muted);
+            font-family: var(--font-display);
+            font-size: 0.9rem;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
             margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
         }
 
         .prompt-box {
-            background: var(--surface-2);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-sm);
+            background: #1a1a1a;
+            border: var(--border-w) solid var(--border);
+            border-radius: 8px;
             padding: 1rem;
             max-height: 300px;
             overflow-y: auto;
-            position: relative;
+            box-shadow: var(--shadow-sm);
         }
 
         .prompt-box pre {
-            font-family: var(--mono);
-            font-size: 0.75rem;
-            line-height: 1.6;
-            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            line-height: 1.65;
+            color: #e0e0e0;
             white-space: pre-wrap;
             word-break: break-word;
         }
@@ -520,27 +718,36 @@
         .copy-prompt-btn {
             width: 100%;
             padding: 0.8rem;
-            margin-top: 1rem;
-            border-radius: var(--radius-sm);
-            border: 1px solid var(--accent);
-            background: var(--accent-glow);
-            color: var(--accent);
-            font-family: var(--font);
+            margin-top: 0.8rem;
+            border-radius: 8px;
+            border: var(--border-w) solid var(--border);
+            background: var(--accent-yellow);
+            color: #000;
+            font-family: var(--font-body);
             font-size: 0.85rem;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
-            transition: all 0.2s;
+            box-shadow: var(--shadow);
+            transition: all 0.15s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
         }
 
         .copy-prompt-btn:hover {
-            background: var(--accent);
-            color: #000;
+            transform: translate(-2px, -2px);
+            box-shadow: 7px 7px 0px #000;
+        }
+
+        .copy-prompt-btn:active {
+            transform: translate(1px, 1px);
+            box-shadow: 2px 2px 0px #000;
         }
 
         .copy-prompt-btn.copied {
-            background: var(--green);
-            border-color: var(--green);
-            color: #000;
+            background: var(--accent-green);
+            color: #fff;
         }
 
         /* === TOAST === */
@@ -548,16 +755,21 @@
             position: fixed;
             bottom: 2rem;
             right: 2rem;
-            background: var(--green);
-            color: #000;
+            background: var(--text);
+            color: #fff;
             padding: 0.8rem 1.5rem;
-            border-radius: var(--radius-sm);
-            font-weight: 600;
+            border-radius: 8px;
+            border: var(--border-w) solid var(--border);
+            font-weight: 700;
             font-size: 0.85rem;
             z-index: 2000;
             transform: translateY(100px);
             opacity: 0;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.2s;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
         }
 
         .toast.show {
@@ -567,8 +779,23 @@
 
         /* === RESPONSIVE === */
         @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+
+            .hero {
+                padding: 2.5rem 1.5rem 2rem;
+            }
+
+            .hero::before,
+            .hero::after,
+            .hero-deco-1,
+            .hero-deco-2 {
+                display: none;
+            }
+
             .header-inner {
-                gap: 0.8rem;
+                gap: 0.5rem;
             }
 
             .search-box {
@@ -588,27 +815,34 @@
             .modal-body {
                 padding: 1rem 1.2rem 1.5rem;
             }
+
+            .modal {
+                box-shadow: 5px 5px 0px #000;
+            }
         }
 
         /* === EMPTY STATE === */
         .empty-state {
             text-align: center;
             padding: 4rem 2rem;
-            color: var(--text-dim);
+            color: var(--text-muted);
         }
 
-        .empty-state .emoji {
-            font-size: 3rem;
+        .empty-state .icon-xl {
+            width: 48px;
+            height: 48px;
+            color: var(--text-muted);
             margin-bottom: 1rem;
         }
 
         .empty-state p {
             font-size: 0.9rem;
+            font-weight: 500;
         }
 
         /* Scrollbar */
         ::-webkit-scrollbar {
-            width: 6px;
+            width: 8px;
         }
 
         ::-webkit-scrollbar-track {
@@ -616,31 +850,94 @@
         }
 
         ::-webkit-scrollbar-thumb {
-            background: var(--surface-3);
-            border-radius: 3px;
+            background: var(--text);
+            border-radius: 0;
+            border: 1px solid #000;
+        }
+
+        /* reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            .card {
+                animation: none;
+                opacity: 1;
+                transform: none;
+            }
+
+            *,
+            *::before,
+            *::after {
+                transition-duration: 0.01ms !important;
+                animation-duration: 0.01ms !important;
+            }
         }
     </style>
 </head>
 
 <body>
 
+    <!-- HERO -->
+    <div class="hero">
+        <div class="hero-deco-1"></div>
+        <div class="hero-deco-2"></div>
+        <div class="hero-content">
+            <div class="hero-title">Promptmaxxing</div>
+            <div class="hero-tagline">Jailbreak My Infographic — 301 styles. Zero skill issues.</div>
+            <div class="hero-sub">browse &middot; compare &middot; copy &middot; create</div>
+        </div>
+    </div>
+
+    <!-- STICKY NAV -->
     <div class="header">
         <div class="header-inner">
-            <div class="logo">🧏‍♂️ <span>Promptmaxxing</span> 🔓</div>
+            <div class="logo">
+                Promptmaxxing
+                <span class="logo-badge">v1.0</span>
+            </div>
             <div class="search-box">
-                <input type="text" id="searchInput" placeholder="Search styles... (e.g. doodle, flat, corporate)">
+                <svg class="icon search-icon" viewBox="0 0 24 24">
+                    <circle cx="11" cy="11" r="8" />
+                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </svg>
+                <input type="text" id="searchInput" placeholder="Search styles... (doodle, flat, corporate)">
             </div>
             <div class="filters">
-                <button class="filter-btn active" data-sort="score-desc">⭐ Top Rated</button>
-                <button class="filter-btn" data-sort="score-asc">📉 Lowest</button>
-                <button class="filter-btn" data-sort="number-asc">🔢 By Number</button>
+                <button class="filter-btn active" data-sort="score-desc">
+                    <svg class="icon icon-sm" viewBox="0 0 24 24">
+                        <polygon
+                            points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                    </svg>
+                    Top Rated
+                </button>
+                <button class="filter-btn" data-sort="score-asc">
+                    <svg class="icon icon-sm" viewBox="0 0 24 24">
+                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
+                        <polyline points="17 6 23 6 23 12" />
+                    </svg>
+                    Lowest
+                </button>
+                <button class="filter-btn" data-sort="number-asc">
+                    <svg class="icon icon-sm" viewBox="0 0 24 24">
+                        <line x1="4" y1="9" x2="20" y2="9" />
+                        <line x1="4" y1="15" x2="20" y2="15" />
+                        <line x1="10" y1="3" x2="8" y2="21" />
+                        <line x1="16" y1="3" x2="14" y2="21" />
+                    </svg>
+                    By Number
+                </button>
+                <button class="filter-btn" data-sort="favs" id="favFilterBtn">
+                    <svg class="icon icon-sm" viewBox="0 0 24 24">
+                        <path
+                            d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                    </svg>
+                    Favorites
+                </button>
                 <select class="sort-select" id="scoreFilter">
                     <option value="0">All Scores</option>
-                    <option value="45">45+ pts (Elite)</option>
-                    <option value="40">40+ pts (Great)</option>
-                    <option value="35">35+ pts (Good)</option>
+                    <option value="45">45+ (Elite)</option>
+                    <option value="40">40+ (Great)</option>
+                    <option value="35">35+ (Good)</option>
                 </select>
-                <span class="count-badge" id="countBadge">301 styles</span>
+                <span class="count-badge" id="countBadge">301</span>
             </div>
         </div>
     </div>
@@ -648,8 +945,12 @@
     <div class="container">
         <div class="grid" id="grid"></div>
         <div class="empty-state" id="emptyState" style="display:none;">
-            <div class="emoji">🔍</div>
-            <p>No prompts match your search.</p>
+            <svg class="icon-xl" viewBox="0 0 24 24"
+                style="width:48px;height:48px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;display:inline-block;margin-bottom:1rem;">
+                <circle cx="11" cy="11" r="8" />
+                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
+            <p id="emptyText">No prompts match your search.</p>
         </div>
     </div>
 
@@ -657,7 +958,12 @@
     <div class="modal-overlay" id="modalOverlay">
         <div class="modal">
             <div class="modal-img-wrapper">
-                <button class="modal-close" id="modalClose">✕</button>
+                <button class="modal-close" id="modalClose">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <line x1="18" y1="6" x2="6" y2="18" />
+                        <line x1="6" y1="6" x2="18" y2="18" />
+                    </svg>
+                </button>
                 <img id="modalImg" src="" alt="">
             </div>
             <div class="modal-body">
@@ -665,18 +971,35 @@
                 <div class="modal-meta" id="modalMeta"></div>
                 <div class="modal-scores-grid" id="modalScores"></div>
                 <div class="prompt-section">
-                    <div class="prompt-label">✨ Prompt (YAML)</div>
+                    <div class="prompt-label">
+                        <svg class="icon icon-sm" viewBox="0 0 24 24">
+                            <polyline points="16 18 22 12 16 6" />
+                            <polyline points="8 6 2 12 8 18" />
+                        </svg>
+                        Prompt (YAML)
+                    </div>
                     <div class="prompt-box">
                         <pre id="modalPrompt"></pre>
                     </div>
-                    <button class="copy-prompt-btn" id="modalCopyBtn">📋 Copy Prompt to Clipboard</button>
+                    <button class="copy-prompt-btn" id="modalCopyBtn">
+                        <svg class="icon icon-sm" viewBox="0 0 24 24">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                        </svg>
+                        Copy Prompt to Clipboard
+                    </button>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Toast -->
-    <div class="toast" id="toast">✅ Prompt copied!</div>
+    <div class="toast" id="toast">
+        <svg class="icon icon-sm" viewBox="0 0 24 24">
+            <polyline points="20 6 9 17 4 12" />
+        </svg>
+        Prompt copied!
+    </div>
 
     <script>
         let DATA = [];
@@ -684,32 +1007,69 @@
         let currentMinScore = 0;
         let searchQuery = '';
 
+        // === FAVORITES ===
+        function getFavs() {
+            try { return JSON.parse(localStorage.getItem('promptmaxxing_favs') || '[]'); }
+            catch { return []; }
+        }
+        function saveFavs(favs) { localStorage.setItem('promptmaxxing_favs', JSON.stringify(favs)); }
+
+        function toggleFav(id, btnEl) {
+            event.stopPropagation();
+            let favs = getFavs();
+            const heartFilled = '<svg class="icon icon-sm" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>';
+            const heartEmpty = '<svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>';
+            if (favs.includes(id)) {
+                favs = favs.filter(f => f !== id);
+                if (btnEl) { btnEl.innerHTML = heartEmpty; btnEl.classList.remove('active'); }
+            } else {
+                favs.push(id);
+                if (btnEl) { btnEl.innerHTML = heartFilled; btnEl.classList.add('active'); }
+            }
+            saveFavs(favs);
+            if (currentSort === 'favs') render();
+        }
+
         // Load data
         fetch('extracted_prompts.json')
             .then(r => r.json())
-            .then(data => {
-                DATA = data;
-                render();
-            })
+            .then(data => { DATA = data; render(); })
             .catch(() => {
-                document.getElementById('grid').innerHTML = '<div class="empty-state"><div class="emoji">⚠️</div><p>Could not load extracted_prompts.json.<br>Make sure this file is in the same directory.</p></div>';
+                document.getElementById('grid').innerHTML = '<div class="empty-state"><p>Could not load extracted_prompts.json.</p></div>';
             });
 
-        function getScoreClass(total) {
-            if (total >= 43) return 'score-high';
-            if (total >= 37) return 'score-mid';
-            return 'score-low';
+        function getGaugeColor(total) {
+            if (total >= 43) return '#4CAF50';
+            if (total >= 37) return '#FF9800';
+            return '#FF5252';
         }
 
         function getScoreColor(val) {
-            if (val >= 9) return 'var(--green)';
-            if (val >= 7) return 'var(--blue)';
-            if (val >= 5) return 'var(--orange)';
-            return 'var(--red)';
+            if (val >= 9) return 'var(--accent-green)';
+            if (val >= 7) return 'var(--accent-blue)';
+            if (val >= 5) return 'var(--accent-orange)';
+            return 'var(--accent-rose)';
+        }
+
+        function buildGaugeSVG(total) {
+            const pct = total / 50;
+            const r = 17;
+            const circumf = 2 * Math.PI * r;
+            const offset = circumf * (1 - pct);
+            const color = getGaugeColor(total);
+            return `<svg class="card-score-gauge" viewBox="0 0 48 48">
+                <circle class="gauge-bg" cx="24" cy="24" r="${r}" />
+                <circle class="gauge-fill" cx="24" cy="24" r="${r}"
+                    stroke="${color}" stroke-dasharray="${circumf}" stroke-dashoffset="${offset}"
+                    transform="rotate(-90 24 24)" />
+                <text class="gauge-text" x="24" y="24">${total}</text>
+            </svg>`;
         }
 
         function render() {
+            const favs = getFavs();
             let filtered = DATA.filter(item => {
+                if (currentSort === 'favs' && !favs.includes(item.id)) return false;
                 if (currentMinScore > 0 && item.total < currentMinScore) return false;
                 if (searchQuery) {
                     const q = searchQuery.toLowerCase();
@@ -718,47 +1078,59 @@
                 return true;
             });
 
-            // Sort
             if (currentSort === 'score-desc') filtered.sort((a, b) => b.total - a.total);
             else if (currentSort === 'score-asc') filtered.sort((a, b) => a.total - b.total);
             else if (currentSort === 'number-asc') filtered.sort((a, b) => a.number - b.number);
+            else if (currentSort === 'favs') filtered.sort((a, b) => b.total - a.total);
 
-            document.getElementById('countBadge').textContent = `${filtered.length} styles`;
-
+            document.getElementById('countBadge').textContent = filtered.length;
             const grid = document.getElementById('grid');
             const empty = document.getElementById('emptyState');
 
             if (filtered.length === 0) {
                 grid.innerHTML = '';
                 empty.style.display = 'block';
+                document.getElementById('emptyText').textContent = currentSort === 'favs' ? 'No favorites yet. Click the heart on any card!' : 'No prompts match your search.';
                 return;
             }
             empty.style.display = 'none';
 
-            grid.innerHTML = filtered.map(item => `
-        <div class="card" onclick="openModal('${item.id}')">
+            const heartFilled = '<svg class="icon icon-sm" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>';
+            const heartEmpty = '<svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>';
+
+            grid.innerHTML = filtered.map((item, i) => {
+                const isFav = favs.includes(item.id);
+                return `
+        <div class="card" onclick="openModal('${item.id}')" style="animation-delay:${Math.min(i * 0.035, 0.8)}s">
             <div class="card-img-wrapper">
                 <img src="${item.img}" alt="${item.name}" loading="lazy">
                 <div class="card-number">#${item.number}</div>
-                <div class="card-score-badge">
-                    <span class="score-dot ${getScoreClass(item.total)}"></span>
-                    ${item.total} pts
-                </div>
+                ${buildGaugeSVG(item.total)}
+                <button class="fav-btn ${isFav ? 'active' : ''}" onclick="toggleFav('${item.id}', this)">${isFav ? heartFilled : heartEmpty}</button>
             </div>
             <div class="card-body">
                 <div class="card-title">${item.name}</div>
                 <div class="card-scores">
-                    ${Object.entries(item.scores).map(([k, v]) =>
-                `<span class="score-chip">${k}: ${v}</span>`
-            ).join('')}
+                    ${Object.entries(item.scores).map(([k, v]) => `<span class="score-chip">${k}: ${v}</span>`).join('')}
                 </div>
                 <div class="card-actions">
-                    <button class="btn" onclick="event.stopPropagation(); copyPrompt('${item.id}', this)">📋 Copy Prompt</button>
-                    <button class="btn" onclick="event.stopPropagation(); openModal('${item.id}')">👁 Details</button>
+                    <button class="btn" onclick="event.stopPropagation(); copyPrompt('${item.id}', this)">
+                        <svg class="icon icon-sm" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        Copy
+                    </button>
+                    <button class="btn" onclick="event.stopPropagation(); openModal('${item.id}')">
+                        <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                        Details
+                    </button>
                 </div>
             </div>
-        </div>
-    `).join('');
+        </div>`;
+            }).join('');
+
+            // Update fav filter button style
+            const favBtn = document.getElementById('favFilterBtn');
+            if (currentSort === 'favs') favBtn.classList.add('fav-active');
+            else favBtn.classList.remove('fav-active');
         }
 
         function copyPrompt(id, btnEl) {
@@ -768,11 +1140,9 @@
                 showToast();
                 if (btnEl) {
                     btnEl.classList.add('copied');
-                    btnEl.textContent = '✅ Copied!';
-                    setTimeout(() => {
-                        btnEl.classList.remove('copied');
-                        btnEl.textContent = '📋 Copy Prompt';
-                    }, 2000);
+                    const origHTML = btnEl.innerHTML;
+                    btnEl.innerHTML = '<svg class="icon icon-sm" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Copied!';
+                    setTimeout(() => { btnEl.classList.remove('copied'); btnEl.innerHTML = origHTML; }, 2000);
                 }
             });
         }
@@ -780,40 +1150,27 @@
         function openModal(id) {
             const item = DATA.find(d => d.id === id);
             if (!item) return;
-
             document.getElementById('modalImg').src = item.img;
             document.getElementById('modalTitle').textContent = item.name;
             document.getElementById('modalMeta').innerHTML = `
-        <span class="meta-item">#${item.number}</span>
-        <span class="meta-item">Total: ${item.total}/50</span>
-        <span class="meta-item">ID: ${item.id}</span>
-    `;
-
+                <span class="meta-item">#${item.number}</span>
+                <span class="meta-item">Total: ${item.total}/50</span>
+                <span class="meta-item">${item.id}</span>`;
             document.getElementById('modalScores').innerHTML = Object.entries(item.scores).map(([k, v]) => `
-        <div class="score-bar-item">
-            <div class="score-bar-label">${k}</div>
-            <div class="score-bar">
-                <div class="score-bar-fill" style="width:${v * 10}%; background:${getScoreColor(v)}"></div>
-            </div>
-            <div class="score-bar-value" style="color:${getScoreColor(v)}">${v}/10</div>
-        </div>
-    `).join('');
-
+                <div class="score-bar-item">
+                    <div class="score-bar-label">${k}</div>
+                    <div class="score-bar"><div class="score-bar-fill" style="width:${v*10}%;background:${getScoreColor(v)}"></div></div>
+                    <div class="score-bar-value" style="color:${getScoreColor(v)}">${v}/10</div>
+                </div>`).join('');
             document.getElementById('modalPrompt').textContent = item.yaml || 'No prompt available';
-
             const copyBtn = document.getElementById('modalCopyBtn');
             copyBtn.onclick = () => {
                 navigator.clipboard.writeText(item.yaml || '').then(() => {
                     showToast();
                     copyBtn.classList.add('copied');
-                    copyBtn.textContent = '✅ Copied to Clipboard!';
-                    setTimeout(() => {
-                        copyBtn.classList.remove('copied');
-                        copyBtn.textContent = '📋 Copy Prompt to Clipboard';
-                    }, 2000);
+                    setTimeout(() => copyBtn.classList.remove('copied'), 2000);
                 });
             };
-
             document.getElementById('modalOverlay').classList.add('active');
             document.body.style.overflow = 'hidden';
         }
@@ -835,13 +1192,8 @@
             setTimeout(() => t.classList.remove('show'), 2000);
         }
 
-        // Search
-        document.getElementById('searchInput').addEventListener('input', (e) => {
-            searchQuery = e.target.value;
-            render();
-        });
+        document.getElementById('searchInput').addEventListener('input', (e) => { searchQuery = e.target.value; render(); });
 
-        // Sort buttons
         document.querySelectorAll('.filter-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
@@ -851,7 +1203,6 @@
             });
         });
 
-        // Score filter
         document.getElementById('scoreFilter').addEventListener('change', (e) => {
             currentMinScore = parseInt(e.target.value);
             render();
