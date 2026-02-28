@@ -1,0 +1,22 @@
+[
+    {
+        "id": "nano_01",
+        "number": 1,
+        "name": "Vector art / Corporate / Minimal",
+        "scores": {
+            "Legibility": 7,
+            "Hierarchy": 7,
+            "Consistency": 6,
+            "Atmosphere": 6,
+            "Theme Fit": 7
+        },
+        "comments": {
+            "Legibility": "Main headings are good, but speech sections like 'What is the evaluation criteria?' at the bottom are small, making it slightly overcrowding for an infographic and reducing visibility.",
+            "Hierarchy": "Since Step 3 is split into A/B, the information density is uneven, making the right side feel too heavy. Also, the large blue arrow at the very bottom floats away from the whole, making the visual endpoint ambiguous.",
+            "Consistency": "While white outline straight arrows connect steps, only the bottom arrow is suddenly a thick filled curve, breaking the form rules. Icon color scheme (red crosses etc.) is also slightly abrupt.",
+            "Atmosphere": "Functional but gives an ordinary impression like combined stock assets. Lacks the premium feel of 'Refined' or 'Serene' requested in the prompt.",
+            "Theme Fit": "Follows the theme, but lacks refinement in terms of minimalism, with too many decorative elements and crammed information."
+        },
+        "total": 33,
+        "img": "assets/images/nanox_001.png",
+        "yaml": "Overall Design Settings:\n  Tone: \"Sincere, Professional, Refined, Serene\"\n  Visual Identity:\n    Background Color: \"Pure White (#FFFFFF) or Pale Blue Gray (#F5F7FA)\"\n    Text Color: \"Navy Blue (#0A2540) - Conveys trust\"\n    Accent Color: \"Royal Blue (#0052CC) or Intelligent Blue (#00B8D9)\"\n    Image Style:\n      Features: \"Flat Vector Illustration, Geometric Shapes, Clean Composition\"\n      Shape: \"Sharp Edges, or Orderly Circles\"\n  Typography:\n    Heading: \"Modern Bold Sans-serif (Inter, Helvetica). Wide Kerning for Intellectual Feel.\"\n    Body: \"Clean Sans-serif
