@@ -416,7 +416,7 @@ body {
     /* Intersection Observer animation — start hidden */
     opacity: 0;
     transform: translateY(16px);
-    transition: opacity 0.45s ease, transform 0.45s ease, border-color 0.2s ease;
+    transition: opacity 0.45s ease, transform 0.45s ease, border-color 0.2s ease, background-color 0.2s ease;
 }
 
 .card.card--visible {
@@ -424,8 +424,18 @@ body {
     transform: translateY(0);
 }
 
-.card:hover {
+.card.card--visible:hover {
     border-color: var(--black);
+    transform: translateY(-3px);
+    background: #FDF6F5;
+}
+
+.card.card--visible:nth-child(3n+2):hover {
+    background: #F5F7FC;
+}
+
+.card.card--visible:nth-child(3n+3):hover {
+    background: #FDFBF0;
 }
 
 /* Colored left stripe — cycles red/blue/yellow */
@@ -437,6 +447,11 @@ body {
     width: 5px;
     height: 100%;
     background: var(--red);
+    transition: width 0.2s ease;
+}
+
+.card:hover::after {
+    width: 8px;
 }
 
 .card:nth-child(3n+2)::after {
@@ -455,14 +470,12 @@ body {
     position: relative;
     aspect-ratio: 1;
     overflow: hidden;
-    background: linear-gradient(
-        110deg,
-        var(--cream-dark) 0%,
-        var(--cream-dark) 30%,
-        var(--cream) 50%,
-        var(--cream-dark) 70%,
-        var(--cream-dark) 100%
-    );
+    background: linear-gradient(110deg,
+            var(--cream-dark) 0%,
+            var(--cream-dark) 30%,
+            var(--cream) 50%,
+            var(--cream-dark) 70%,
+            var(--cream-dark) 100%);
     background-size: 300% 100%;
     animation: skeleton-shimmer 1.8s ease-in-out infinite;
 }
@@ -473,8 +486,13 @@ body {
 }
 
 @keyframes skeleton-shimmer {
-    0% { background-position: 200% 0; }
-    100% { background-position: -200% 0; }
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
 }
 
 /* Geometric skeleton motif — circle, square, triangle placeholders */
@@ -741,8 +759,13 @@ body {
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 .modal {
@@ -756,8 +779,15 @@ body {
 }
 
 @keyframes modalIn {
-    from { opacity: 0; transform: translateY(16px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .modal-close {
@@ -1233,7 +1263,7 @@ body {
 }
 
 /* Shift up when compare bar is visible */
-.compare-bar.visible ~ .back-to-top.visible {
+.compare-bar.visible~.back-to-top.visible {
     bottom: 5rem;
 }
 
@@ -1324,8 +1354,18 @@ body {
 }
 
 @keyframes dotPulse {
-    0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
-    40% { transform: scale(1); opacity: 1; }
+
+    0%,
+    80%,
+    100% {
+        transform: scale(0.6);
+        opacity: 0.4;
+    }
+
+    40% {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
 .load-more-info {
