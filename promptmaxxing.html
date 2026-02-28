@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧏‍♂️ Promptmaxxing — Jailbreak My Infographic 🔓</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0f;
+            --surface: #13131a;
+            --surface-2: #1a1a24;
+            --surface-3: #22222e;
+            --border: rgba(255, 255, 255, 0.06);
+            --border-hover: rgba(255, 255, 255, 0.12);
+            --text: #e8e8ed;
+            --text-muted: #8888a0;
+            --text-dim: #55556a;
+            --accent: #f5c542;
+            --accent-glow: rgba(245, 197, 66, 0.15);
+            --green: #4ade80;
+            --blue: #60a5fa;
+            --purple: #a78bfa;
+            --red: #f87171;
+            --orange: #fb923c;
+            --radius: 16px;
+            --radius-sm: 10px;
+            --font: 'Inter', -apple-system, sans-serif;
+            --mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* === HEADER === */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(10, 10, 15, 0.85);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 2rem;
+        }
+
+        .header-inner {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-shrink: 0;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        /* Search */
+        .search-box {
+            flex: 1;
+            max-width: 400px;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.6rem 1rem 0.6rem 2.4rem;
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            color: var(--text);
+            font-family: var(--font);
+            font-size: 0.85rem;
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        .search-box input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-glow);
+        }
+
+        .search-box::before {
+            content: '🔍';
+            position: absolute;
+            left: 0.8rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.8rem;
+        }
+
+        /* Filters */
+        .filters {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.4rem 0.9rem;
+            border-radius: 50px;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text-muted);
+            font-family: var(--font);
+            font-size: 0.75rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--border-hover);
+            color: var(--text);
+            background: var(--surface-2);
+        }
+
+        .filter-btn.active {
+            background: var(--accent);
+            color: #000;
+            border-color: var(--accent);
+            font-weight: 600;
+        }
+
+        .sort-select {
+            padding: 0.4rem 0.8rem;
+            border-radius: 50px;
+            border: 1px solid var(--border);
+            background: var(--surface-2);
+            color: var(--text-muted);
+            font-family: var(--font);
+            font-size: 0.75rem;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .count-badge {
+            padding: 0.3rem 0.7rem;
+            border-radius: 50px;
+            background: var(--surface-3);
+            color: var(--text-dim);
+            font-size: 0.7rem;
+            font-weight: 600;
+            font-family: var(--mono);
+        }
+
+        /* === GRID === */
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        /* === CARD === */
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .card-img-wrapper {
+            position: relative;
+            aspect-ratio: 1;
+            overflow: hidden;
+            background: var(--surface-2);
+        }
+
+        .card-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card:hover .card-img-wrapper img {
+            transform: scale(1.05);
+        }
+
+        .card-number {
+            position: absolute;
+            top: 0.75rem;
+            left: 0.75rem;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            color: var(--accent);
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.25rem 0.6rem;
+            border-radius: 50px;
+        }
+
+        .card-score-badge {
+            position: absolute;
+            top: 0.75rem;
+            right: 0.75rem;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            color: #fff;
+            font-family: var(--mono);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.25rem 0.6rem;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .score-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .score-high {
+            background: var(--green);
+        }
+
+        .score-mid {
+            background: var(--orange);
+        }
+
+        .score-low {
+            background: var(--red);
+        }
+
+        .card-body {
+            padding: 1rem 1.2rem;
+        }
+
+        .card-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            line-height: 1.4;
+            margin-bottom: 0.6rem;
+            color: var(--text);
+        }
+
+        .card-scores {
+            display: flex;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+            margin-bottom: 0.8rem;
+        }
+
+        .score-chip {
+            font-size: 0.65rem;
+            font-family: var(--mono);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            background: var(--surface-3);
+            color: var(--text-muted);
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 0.55rem 0.8rem;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+            background: var(--surface-2);
+            color: var(--text-muted);
+            font-family: var(--font);
+            font-size: 0.75rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+        }
+
+        .btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: var(--accent-glow);
+        }
+
+        .btn.copied {
+            background: rgba(74, 222, 128, 0.15);
+            border-color: var(--green);
+            color: var(--green);
+        }
+
+        /* === MODAL === */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            padding: 2rem;
+            overflow-y: auto;
+            animation: fadeIn 0.2s ease;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .modal {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            max-width: 800px;
+            width: 100%;
+            margin-top: 3rem;
+            overflow: hidden;
+            animation: slideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 0, 0, 0.4);
+        }
+
+        .modal-img-wrapper {
+            position: relative;
+            aspect-ratio: 1;
+            background: var(--surface-2);
+            max-height: 500px;
+            overflow: hidden;
+        }
+
+        .modal-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .modal-body {
+            padding: 1.5rem 2rem 2rem;
+        }
+
+        .modal-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .modal-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-family: var(--mono);
+        }
+
+        .modal-scores-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .score-bar-item {
+            background: var(--surface-2);
+            border-radius: var(--radius-sm);
+            padding: 0.6rem 0.8rem;
+        }
+
+        .score-bar-label {
+            font-size: 0.7rem;
+            color: var(--text-dim);
+            margin-bottom: 0.4rem;
+        }
+
+        .score-bar {
+            height: 4px;
+            background: var(--surface-3);
+            border-radius: 2px;
+            overflow: hidden;
+            margin-bottom: 0.3rem;
+        }
+
+        .score-bar-fill {
+            height: 100%;
+            border-radius: 2px;
+            transition: width 0.5s ease;
+        }
+
+        .score-bar-value {
+            font-family: var(--mono);
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .prompt-section {
+            margin-top: 1rem;
+        }
+
+        .prompt-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+        }
+
+        .prompt-box {
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 1rem;
+            max-height: 300px;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .prompt-box pre {
+            font-family: var(--mono);
+            font-size: 0.75rem;
+            line-height: 1.6;
+            color: var(--text-muted);
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .copy-prompt-btn {
+            width: 100%;
+            padding: 0.8rem;
+            margin-top: 1rem;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--accent);
+            background: var(--accent-glow);
+            color: var(--accent);
+            font-family: var(--font);
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .copy-prompt-btn:hover {
+            background: var(--accent);
+            color: #000;
+        }
+
+        .copy-prompt-btn.copied {
+            background: var(--green);
+            border-color: var(--green);
+            color: #000;
+        }
+
+        /* === TOAST === */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--green);
+            color: #000;
+            padding: 0.8rem 1.5rem;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 0.85rem;
+            z-index: 2000;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 768px) {
+            .header-inner {
+                gap: 0.8rem;
+            }
+
+            .search-box {
+                max-width: 100%;
+                order: 10;
+            }
+
+            .grid {
+                grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+                gap: 1rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            .modal-body {
+                padding: 1rem 1.2rem 1.5rem;
+            }
+        }
+
+        /* === EMPTY STATE === */
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--text-dim);
+        }
+
+        .empty-state .emoji {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .empty-state p {
+            font-size: 0.9rem;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--surface-3);
+            border-radius: 3px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <div class="header-inner">
+            <div class="logo">🧏‍♂️ <span>Promptmaxxing</span> 🔓</div>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Search styles... (e.g. doodle, flat, corporate)">
+            </div>
+            <div class="filters">
+                <button class="filter-btn active" data-sort="score-desc">⭐ Top Rated</button>
+                <button class="filter-btn" data-sort="score-asc">📉 Lowest</button>
+                <button class="filter-btn" data-sort="number-asc">🔢 By Number</button>
+                <select class="sort-select" id="scoreFilter">
+                    <option value="0">All Scores</option>
+                    <option value="45">45+ pts (Elite)</option>
+                    <option value="40">40+ pts (Great)</option>
+                    <option value="35">35+ pts (Good)</option>
+                </select>
+                <span class="count-badge" id="countBadge">301 styles</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="grid" id="grid"></div>
+        <div class="empty-state" id="emptyState" style="display:none;">
+            <div class="emoji">🔍</div>
+            <p>No prompts match your search.</p>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <div class="modal-img-wrapper">
+                <button class="modal-close" id="modalClose">✕</button>
+                <img id="modalImg" src="" alt="">
+            </div>
+            <div class="modal-body">
+                <div class="modal-title" id="modalTitle"></div>
+                <div class="modal-meta" id="modalMeta"></div>
+                <div class="modal-scores-grid" id="modalScores"></div>
+                <div class="prompt-section">
+                    <div class="prompt-label">✨ Prompt (YAML)</div>
+                    <div class="prompt-box">
+                        <pre id="modalPrompt"></pre>
+                    </div>
+                    <button class="copy-prompt-btn" id="modalCopyBtn">📋 Copy Prompt to Clipboard</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">✅ Prompt copied!</div>
+
+    <script>
+        let DATA = [];
+        let currentSort = 'score-desc';
+        let currentMinScore = 0;
+        let searchQuery = '';
+
+        // Load data
+        fetch('extracted_prompts.json')
+            .then(r => r.json())
+            .then(data => {
+                DATA = data;
+                render();
+            })
+            .catch(() => {
+                document.getElementById('grid').innerHTML = '<div class="empty-state"><div class="emoji">⚠️</div><p>Could not load extracted_prompts.json.<br>Make sure this file is in the same directory.</p></div>';
+            });
+
+        function getScoreClass(total) {
+            if (total >= 43) return 'score-high';
+            if (total >= 37) return 'score-mid';
+            return 'score-low';
+        }
+
+        function getScoreColor(val) {
+            if (val >= 9) return 'var(--green)';
+            if (val >= 7) return 'var(--blue)';
+            if (val >= 5) return 'var(--orange)';
+            return 'var(--red)';
+        }
+
+        function render() {
+            let filtered = DATA.filter(item => {
+                if (currentMinScore > 0 && item.total < currentMinScore) return false;
+                if (searchQuery) {
+                    const q = searchQuery.toLowerCase();
+                    return item.name.toLowerCase().includes(q) || item.id.toLowerCase().includes(q) || (item.yaml && item.yaml.toLowerCase().includes(q));
+                }
+                return true;
+            });
+
+            // Sort
+            if (currentSort === 'score-desc') filtered.sort((a, b) => b.total - a.total);
+            else if (currentSort === 'score-asc') filtered.sort((a, b) => a.total - b.total);
+            else if (currentSort === 'number-asc') filtered.sort((a, b) => a.number - b.number);
+
+            document.getElementById('countBadge').textContent = `${filtered.length} styles`;
+
+            const grid = document.getElementById('grid');
+            const empty = document.getElementById('emptyState');
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '';
+                empty.style.display = 'block';
+                return;
+            }
+            empty.style.display = 'none';
+
+            grid.innerHTML = filtered.map(item => `
+        <div class="card" onclick="openModal('${item.id}')">
+            <div class="card-img-wrapper">
+                <img src="${item.img}" alt="${item.name}" loading="lazy">
+                <div class="card-number">#${item.number}</div>
+                <div class="card-score-badge">
+                    <span class="score-dot ${getScoreClass(item.total)}"></span>
+                    ${item.total} pts
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="card-title">${item.name}</div>
+                <div class="card-scores">
+                    ${Object.entries(item.scores).map(([k, v]) =>
+                `<span class="score-chip">${k}: ${v}</span>`
+            ).join('')}
+                </div>
+                <div class="card-actions">
+                    <button class="btn" onclick="event.stopPropagation(); copyPrompt('${item.id}', this)">📋 Copy Prompt</button>
+                    <button class="btn" onclick="event.stopPropagation(); openModal('${item.id}')">👁 Details</button>
+                </div>
+            </div>
+        </div>
+    `).join('');
+        }
+
+        function copyPrompt(id, btnEl) {
+            const item = DATA.find(d => d.id === id);
+            if (!item) return;
+            navigator.clipboard.writeText(item.yaml || '').then(() => {
+                showToast();
+                if (btnEl) {
+                    btnEl.classList.add('copied');
+                    btnEl.textContent = '✅ Copied!';
+                    setTimeout(() => {
+                        btnEl.classList.remove('copied');
+                        btnEl.textContent = '📋 Copy Prompt';
+                    }, 2000);
+                }
+            });
+        }
+
+        function openModal(id) {
+            const item = DATA.find(d => d.id === id);
+            if (!item) return;
+
+            document.getElementById('modalImg').src = item.img;
+            document.getElementById('modalTitle').textContent = item.name;
+            document.getElementById('modalMeta').innerHTML = `
+        <span class="meta-item">#${item.number}</span>
+        <span class="meta-item">Total: ${item.total}/50</span>
+        <span class="meta-item">ID: ${item.id}</span>
+    `;
+
+            document.getElementById('modalScores').innerHTML = Object.entries(item.scores).map(([k, v]) => `
+        <div class="score-bar-item">
+            <div class="score-bar-label">${k}</div>
+            <div class="score-bar">
+                <div class="score-bar-fill" style="width:${v * 10}%; background:${getScoreColor(v)}"></div>
+            </div>
+            <div class="score-bar-value" style="color:${getScoreColor(v)}">${v}/10</div>
+        </div>
+    `).join('');
+
+            document.getElementById('modalPrompt').textContent = item.yaml || 'No prompt available';
+
+            const copyBtn = document.getElementById('modalCopyBtn');
+            copyBtn.onclick = () => {
+                navigator.clipboard.writeText(item.yaml || '').then(() => {
+                    showToast();
+                    copyBtn.classList.add('copied');
+                    copyBtn.textContent = '✅ Copied to Clipboard!';
+                    setTimeout(() => {
+                        copyBtn.classList.remove('copied');
+                        copyBtn.textContent = '📋 Copy Prompt to Clipboard';
+                    }, 2000);
+                });
+            };
+
+            document.getElementById('modalOverlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('modalOverlay').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.getElementById('modalClose').addEventListener('click', closeModal);
+        document.getElementById('modalOverlay').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('modalOverlay')) closeModal();
+        });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+        function showToast() {
+            const t = document.getElementById('toast');
+            t.classList.add('show');
+            setTimeout(() => t.classList.remove('show'), 2000);
+        }
+
+        // Search
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            searchQuery = e.target.value;
+            render();
+        });
+
+        // Sort buttons
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentSort = btn.dataset.sort;
+                render();
+            });
+        });
+
+        // Score filter
+        document.getElementById('scoreFilter').addEventListener('change', (e) => {
+            currentMinScore = parseInt(e.target.value);
+            render();
+        });
+    </script>
+</body>
+
+</html>
